@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Absen; // Import model Absen
-use Illuminate\Http\Request; // Import Http Request
-use Illuminate\View\View; // Import return type View
-use Illuminate\Http\RedirectResponse; // Import return type RedirectResponse
+use App\Models\Absen; 
+use Illuminate\Http\Request; 
+use Illuminate\View\View; 
+use Illuminate\Http\RedirectResponse; 
 
 class AbsenController extends Controller
 {
@@ -16,10 +16,10 @@ class AbsenController extends Controller
      */
     public function index(): View
     {
-        // Ambil semua data absensi dengan urutan terbaru dan paginasi
+        // Ambil data paginasi
         $absensi = Absen::latest()->paginate(10);
 
-        // Render view dengan data absensi
+        
         return view('absensi.index', compact('absensi'));
     }
 
@@ -30,7 +30,7 @@ class AbsenController extends Controller
      */
     public function create(): View
     {
-        // Menampilkan view untuk form tambah data
+    
         return view('absensi.create');
     }
 

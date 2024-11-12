@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('absens', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_pengguna'); // ID pengguna
-            $table->date('tanggal_absen'); // Tanggal kehadiran
-            $table->time('waktu_masuk'); // Waktu masuk
-            $table->time('waktu_keluar')->nullable(); // Waktu keluar (opsional)
-            $table->string('catatan')->nullable(); // Catatan tambahan
-            $table->string('judul_buku')->nullable(); // Judul buku yang dipinjam
-            $table->date('tanggal_pinjam')->nullable(); // Tanggal peminjaman
-            $table->date('tanggal_kembali')->nullable(); // Tanggal pengembalian
+            $table->bigInteger('id_pengguna');
+            $table->date('tanggal_absen');
+            $table->time('waktu_masuk');
+            $table->time('waktu_keluar')->nullable();
+            $table->string('catatan')->nullable(); 
+            $table->string('judul_buku')->nullable();
+            $table->date('tanggal_pinjam')->nullable();
+            $table->date('tanggal_kembali')->nullable();
             $table->timestamps();
         });
     }

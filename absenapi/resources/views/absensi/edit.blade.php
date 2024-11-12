@@ -78,7 +78,7 @@
                         
                         @error('judul_buku')
                             <div class="alert alert-danger mt-2">
-                                {{ $message }}
+                                {{  }}
                             </div>
                         @enderror
                     </div>
