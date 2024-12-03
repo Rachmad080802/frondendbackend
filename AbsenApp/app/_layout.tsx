@@ -1,21 +1,36 @@
-// app/_layout.tsx
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import TabLayout from './tabs/_layout';
-import NotFound from './+not-found';
+import { useFonts } from "expo-font";
+import { Stack } from "expo-router";
+import * as SplashScreen from "expo-splash-screen";
+import { useEffect } from "react";
+import "react-native-reanimated";
 
-const Tab = createBottomTabNavigator();
+// Menjaga splash screen agar tidak hilang otomatis
+SplashScreen.preventAutoHideAsync();
 
-const RootLayout = () => {
+export default function RootLayout() {
+  const [loaded] = useFonts({
+    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"), // Memuat font kustom
+  });
+
+  useEffect(() => {
+    // Menyembunyikan splash screen setelah font selesai dimuat
+    if (loaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [loaded]);
+
+  // Jika font belum dimuat, menampilkan splash screen
+  if (!loaded) {
+    return null;
+  }
+
   return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={TabLayout} />
-        <Tab.Screen name="Not Found" component={NotFound} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Stack>
+      {/* Menyembunyikan header untuk tampilan tab */}
+      <Stack.Screen name="absensi" options={{ headerShown: false }} />
+      {/* Tampilan screen absensi */}
+      <Stack.Screen name="absenMasuk" />
+      <Stack.Screen name="absenKeluar" />
+    </Stack>
   );
-};
-
-export default RootLayout;
+}
